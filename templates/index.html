@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block content %}
+<div class="container well" style="margin-top:25px">
+
+    <h1 style="text-align: center">Cars List</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no cars. List one below!</h4>
+    {% else %}
+    <table class="table table-striped" style="text-align: center">
+        <tr >
+            <th style="text-align: center">Car</th>
+            <th style="text-align: center">Price</th>
+            <th style="text-align: center">Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task['name'] }}</td>
+                <td>${{ task['price'] }}</td>
+                <td>
+                    <a href="/delete/{{task.name}}" class="btn btn-danger">Delete</a>
+
+                    <a href="/update/{{task.name}}/{{task.price}}" class="btn btn-info">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form"style="text-align: center">
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content" placeholder="Car Name">
+            <input type="text" name="price" id="price" placeholder="Car Price">
+            <button class="btn btn-primary"> Add car</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+{% endblock %}

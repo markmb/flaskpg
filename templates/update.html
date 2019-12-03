@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block body %}
+<div class="container well" style="margin-top:25px">
+    <h1 style="text-align: center">Update</h1>
+
+    <div class="form"style="text-align: center">
+    <form action="/update/{{task.name}}/{{task.price}}" method="POST">
+        <input type="text" name="content" id="content" value="{{task.name}}">
+        <input type="text" name="price" id="price" value="{{task.price}}">
+        <button class="btn btn-info"> Update</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
